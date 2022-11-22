@@ -11,8 +11,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-
+import {Logo} from '../Styles/Styles'
+import CartWidget from '../Cart/Widget/CartWidget';
+import FavoritesWidget from '../Cart/Widget/FavoritesWidget';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -36,28 +37,10 @@ function ResponsiveNav() {
   };
 
   return (
-    <AppBar >
+    <AppBar color='primary' elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
+                <Logo src='../funnappLOGO.png' alt='logo'/>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -67,7 +50,7 @@ function ResponsiveNav() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+             
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -88,47 +71,29 @@ function ResponsiveNav() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page} onClick={handleCloseNavMenu} color='secondary'>
+                  <Typography textAlign="center" color='secondary'>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Typography textAlign="center" color='secondary'>{page}</Typography>
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            <CartWidget/>
+            <FavoritesWidget/>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -138,18 +103,18 @@ function ResponsiveNav() {
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
+            }}
+            keepMounted
+            transformOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <MenuItem key={setting} onClick={handleCloseUserMenu} >
+                  <Typography textAlign="center" color='secondary'>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
